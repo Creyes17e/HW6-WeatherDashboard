@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  padding: 0 auto;
+  margin: 0 auto;
+}
+/*Style for Body*/
+body {
+  font-family: "Open-Sans", sans-serif;
+  font-size: 16px;
+  background-color: lightslategray;
+}
+/*Style for Jumbotron*/
+.jumbotron {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  text-align: center;
+  background: url("../images/jumbotronbg.jpeg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: center;
+}
