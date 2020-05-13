@@ -15,7 +15,7 @@
       crossorigin="anonymous"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
@@ -28,19 +28,27 @@
       <h1 class="display">Weather Dashboard</h1>
     </header>
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-md-6 bg-info" id="searchColumn">
           <form id="add-city">
             <label for="city-input">Search for a City:</label>
             <br />
             <input type="text" id="city-input" />
-            <input id="add-city" type="submit" value="O" />
+            <button
+              id="add-city-btn"
+              type="submit"
+              class="fas fa-search"
+            ></button>
           </form>
+          <div id="city-btns-view"></div>
         </div>
         <div class="col-md-6 bg-primary">
           <br />
-          <div class="card"><div id="display-city-info">City Info</div></div>
-          <div class="card">5 Day Forecast</div>
+          <div class="card" id="display-city-weather"></div>
+          <br />
+          <div class="row" id="display-city-forecast">
+            <h2>5-Day Forecast:</h2>
+          </div>
           <br />
         </div>
       </div>
