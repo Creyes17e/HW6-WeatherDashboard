@@ -22,11 +22,17 @@ body {
   -o-background-size: cover;
   background-position: center;
 }
-.city {
+.city-btn {
   padding: 0.5rem;
   display: block;
   margin: 0.5rem;
   width: 25%;
   border-radius: 10px 10px 10px 10px;
   border-color: lightskyblue;
+}
+#display-city-weather {
+  display: block;
+}
+#display-city-forecast {
+  display: inline-flexbox;
 }
