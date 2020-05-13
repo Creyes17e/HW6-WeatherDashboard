@@ -20,9 +20,7 @@ function displayCityWeather() {
     //Div to hold city weather
     var cityDiv = $("#display-city-weather");
     //City Naem
-    var cityNameP = $("<p>").html(
-      "<h2>" + response.name + "-" + `(${currentDate})</h2>`
-    );
+    var cityNameP = $("<h2>").text(response.name + "-" + `(${currentDate})`);
     cityDiv.append(cityNameP);
     //City Temp in Farenheit
     var tempEl = ((response.main.temp - 273.15) * 1.8 + 32).toFixed(1);
@@ -39,6 +37,7 @@ function displayCityWeather() {
     var windP = $("<p>").text("Wind Speed:" + windEl + "MPH");
     cityDiv.append(windP);
   });
+  //UV index
 
   //Display 5-day Forecast
   var APIKey = "16579f7bf39afcac0733e6f89e871775";
@@ -55,10 +54,10 @@ function displayCityWeather() {
     url: queryUrl2,
     method: "GET",
   }).then(function (response) {
-    $("#display-city-forecast").empty();
+    $("#5-day-forecast").empty();
     var weatherResults = response.list;
     for (var i = 0; i < weatherResults.length; i += 8) {
-      var displayCityForecastDiv = $("#display-city-forecast");
+      var displayCityForecastDiv = $("<div class='card'>");
       // var date = weatherResults[i].dt_text;
       //date does not display, need to fix
       var tempEl2 = ((weatherResults[i].main.temp - 273.15) * 1.8 + 32).toFixed(
@@ -79,7 +78,7 @@ function displayCityWeather() {
       // displayCityForecastDiv.append(displayDate);
       displayCityForecastDiv.append(displayTemp);
       displayCityForecastDiv.append(displayHumidity);
-      $("#display-city-forecast").append(displayCityForecastDiv);
+      $("#5-day-forecast").append(displayCityForecastDiv);
     }
   });
 }
