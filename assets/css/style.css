@@ -5,7 +5,7 @@
 }
 /*Style for Body*/
 body {
-  font-family: "Open-Sans", sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 16px;
   background-color: lightslategray;
 }
@@ -21,4 +21,12 @@ body {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
+}
+.city {
+  padding: 0.5rem;
+  display: block;
+  margin: 0.5rem;
+  width: 25%;
+  border-radius: 10px 10px 10px 10px;
+  border-color: lightskyblue;
 }
