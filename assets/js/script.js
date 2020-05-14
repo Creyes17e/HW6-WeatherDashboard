@@ -2,8 +2,8 @@
 var cities = [];
 var currentDate = new Date().toDateString();
 
-//Function to display city weather
-function displayCityWeather() {
+//Function to display city current weather
+function displayCityWeather(cityname) {
   var APIKey = "16579f7bf39afcac0733e6f89e871775";
   var city = $(this).attr("data-name");
   var queryUrl =
@@ -11,44 +11,71 @@ function displayCityWeather() {
     city +
     "&appid=" +
     APIKey;
-  console.log(queryUrl);
+
   $.ajax({
     url: queryUrl,
     method: "GET",
   }).then(function (response) {
     $("#display-city-weather").empty();
-    //Div to hold city weather
+    //Div to hold city current weather
     var cityDiv = $("#display-city-weather");
-    //City Naem
+    //City Name
     var cityNameP = $("<h2>").text(response.name + " - " + ` ${currentDate}`);
-    cityDiv.append(cityNameP);
+
     //City Temp in Farenheit
     var tempEl = ((response.main.temp - 273.15) * 1.8 + 32).toFixed(1);
     var tempP = $("<p>").text("Temperature: " + tempEl + " F");
-    cityDiv.append(tempP);
 
     //City Humidity
     var humidityEl = response.main.humidity;
     var humidityP = $("<p>").text("Humidity: " + humidityEl + " %");
-    cityDiv.append(humidityP);
 
     //City Wind Speed
     var windEl = response.wind.speed;
     var windP = $("<p>").text("Wind Speed: " + windEl + " MPH");
-    cityDiv.append(windP);
+
+    var newCurrentWeatherDiv = $("<div class='current-weather'>");
+
+    newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP);
+    cityDiv.html(newCurrentWeatherDiv);
+    //Weather Icons
+
+    //Display UV Index
+    var lon = response.coord.lon;
+    var lat = response.coord.lat;
+    var queryUrl3 =
+      "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+      APIKey +
+      "&lat=" +
+      lat +
+      "&lon=" +
+      lon;
+
+    $.ajax({
+      url: queryUrl3,
+      method: "GET",
+    }).then(function (response) {
+      $("#uv-display").empty();
+
+      var uvResults = response.value;
+      console.log(response);
+      //UV BUTTON
+      var uvEl = $("<button class='uv-btn bg-danger'>").text(
+        "UV Index: " + uvResults
+      );
+      $("#uv-display").html(uvEl);
+    });
   });
-  //UV index
 
   //Display 5-day Forecast
   var APIKey = "16579f7bf39afcac0733e6f89e871775";
   var city = $(this).attr("data-name");
-  console.log(city);
+
   var queryUrl2 =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     city +
     "&appid=" +
     APIKey;
-  console.log(queryUrl2);
 
   $.ajax({
     url: queryUrl2,
@@ -57,8 +84,8 @@ function displayCityWeather() {
     $("#5-day-forecast").empty();
     var weatherResults = response.list;
     for (var i = 0; i < weatherResults.length; i += 8) {
-      var displayCityForecastDiv = $("<div class='card'>");
-      //Date for 5-day forcast
+      var displayCityForecastDiv = $("<div class='card-forecast float-right'>");
+      //Date for 5-day forecast
       var date = weatherResults[i].dt_txt;
       var fixedDate = date.substr(0, 10);
 
@@ -66,7 +93,6 @@ function displayCityWeather() {
         1
       );
       var humidityEl2 = weatherResults[i].main.humidity;
-      console.log(tempEl2);
 
       var displayDate = $("<p class='card-title'>").text(fixedDate);
       var displayTemp = $("<p class='card-text'>").text(
@@ -84,17 +110,6 @@ function displayCityWeather() {
     }
   });
 }
-//Display UV Index
-// var lon = response.main.coord.lon;
-// var lat = response.coord.lat;
-// var queryUrl3 = "http://api.openweathermap.org/data/2.5/uvi?";
-// "appid=" + APIKey + "&lat=" + lat + "&lon=" + lon;
-// console.log(queryUrl3);
-// console.log(lon);
-// ajax({
-//   url: queryUrl3,
-//   method: "GET",
-// }).then(function (response) {});
 
 //Function to display city btns
 function renderCityBtns() {
@@ -108,14 +123,27 @@ function renderCityBtns() {
   }
 }
 
-//Function for event handler for button click
+//Function for event handler for button click "search"
 $("#add-city-btn").on("click", function (event) {
   event.preventDefault();
-
+  //storing city name
   var city = $("#city-input").val().trim();
+
+  //save user input
+  var storedCities = [];
+  var cityInputText = $(this).val();
+  storedCities.push(cityInputText);
+  localStorage.setItem("cityInputName", JSON.stringify(storedCities));
   cities.push(city);
   renderCityBtns();
 });
+
+// //Displays stored items after a refresh
+// function displayStoredWeather() {
+//   var lastSearch = JSON.parse(localStorage.getItem("cityInputName"));
+
+// }
+
 $(document).on("click", ".city-btn", displayCityWeather);
 
 renderCityBtns();
