@@ -35,4 +35,12 @@ body {
 }
 #display-city-forecast {
   display: inline-flexbox;
+  vertical-align: text-bottom;
+}
+.card-text {
+  display: block;
+}
+.card {
+  background-color: transparent;
+  color: wheat;
 }
