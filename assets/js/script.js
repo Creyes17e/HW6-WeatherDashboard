@@ -12,11 +12,6 @@ function displayCityWeather(cityname) {
     cityname +
     "&appid=" +
     APIKey;
-  var queryUrl3 =
-    "https://api.openweathermap.org/data/2.5/forecast?q=" +
-    cityname +
-    "&appid=" +
-    APIKey;
 
   $.ajax({
     url: queryUrl,
@@ -81,6 +76,12 @@ function displayCityWeather(cityname) {
     });
   });
   //Display 5-day Forecast
+  var queryUrl3 =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    cityname +
+    "&appid=" +
+    APIKey;
+
   $.ajax({
     url: queryUrl3,
     method: "GET",
@@ -116,7 +117,7 @@ function displayCityWeather(cityname) {
   });
 }
 storedWeather();
-//Function for event handler for button click "search"
+//Grabs text input from form on click
 $("#add-city-btn").on("click", function (event) {
   event.preventDefault();
   //stores city name
@@ -129,13 +130,15 @@ $("#add-city-btn").on("click", function (event) {
   localStorage.setItem("cityInputName", JSON.stringify(storedCities));
 
   displayCityWeather(cityInput);
-  storedWeather();
+  storedWeather(storedCities);
 });
 
 function storedWeather() {
   // //Calls city name from user input and displays in div
 
   var lastCitySearch = JSON.parse(localStorage.getItem("cityInputName"));
+
+  //Creates buttons for each city being inputted by user
   var cityListCol = $("<div class='city-list'>");
   var cityList = $("<button class='city-btn city-item-list'>").text(
     lastCitySearch
@@ -143,7 +146,7 @@ function storedWeather() {
   cityListCol.append(cityList);
   $("#city-list-view").prepend(cityListCol);
 }
-
+//Displays weather info on click
 $("#city-list-view").on("click", ".city-btn", function (event) {
   event.preventDefault();
   displayCityWeather($(this).text());
