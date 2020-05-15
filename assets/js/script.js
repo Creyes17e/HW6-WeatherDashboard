@@ -101,7 +101,7 @@ function displayCityWeather(cityname) {
       //UV value btn
       var uvResults = response.value.toFixed(1);
       var uvBtn = $("<button class='uv-btn'>").html(uvResults);
-      uvIndexP.append(uvBtn);
+      uvIndexP.html(uvBtn);
       //Setting UV Colors
       if (uvResults <= 2) {
         uvBtn.css("background-color", "green");
