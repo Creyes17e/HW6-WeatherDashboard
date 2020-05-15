@@ -37,8 +37,7 @@ function displayCityWeather(cityname) {
 
     //Weather Day Icons
     var currentWeather = response.weather[0].main;
-    // console.log(currentWeather);
-    // console.log(queryUrl);
+
     if (currentWeather === "Clouds") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
@@ -77,10 +76,12 @@ function displayCityWeather(cityname) {
     }
     //Displays current  weather icon next to city name
     cityNameP.append(currentWeatherIcon);
+
     //Displays city current weather
     var newCurrentWeatherDiv = $("<div class='current-weather'>");
     newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP, uvIndexP);
     cityDiv.html(newCurrentWeatherDiv);
+
     //UV Index call
     var lon = response.coord.lon;
     var lat = response.coord.lat;
@@ -116,6 +117,7 @@ function displayCityWeather(cityname) {
     });
   });
   //Display 5-day Forecast
+
   var queryUrl3 =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     cityname +
@@ -129,9 +131,13 @@ function displayCityWeather(cityname) {
     $("#5-day-forecast").empty();
     //Storing results
     var weatherResults = response.list;
+
     //Title for forecast
+    var displayForecastTitleDiv = $("<div class='forecast-title-div'>");
     var displayForecastTitle = $("<h4>").text("5-Day-Forecast");
-    $(".forecast-title").append(displayForecastTitle);
+    displayForecastTitleDiv.append(displayForecastTitle);
+    $(".forecast-title").html(displayForecastTitleDiv);
+
     //For loop to call 5 day forecast on html
     for (var i = 0; i < weatherResults.length; i += 8) {
       var displayCityForecastDiv = $("<div class='card-forecast'>");
@@ -187,7 +193,6 @@ function displayCityWeather(cityname) {
           "http://openweathermap.org/img/wn/09d.png"
         );
       }
-
       displayCityForecastDiv.append(
         displayDate,
         weatherIcon,
