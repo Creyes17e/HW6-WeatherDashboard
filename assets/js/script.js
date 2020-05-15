@@ -135,15 +135,14 @@ function renderCityBtns() {
 $("#add-city-btn").on("click", function (event) {
   event.preventDefault();
   //storing city name
-  var city = $("#city-input").val().trim();
+  var cityInput = $("#city-input").val().trim();
 
   //save user input
   var storedCities = [];
-  var cityInputText = $(this).val();
+  var cityInputText = $(this).siblings("input").val();
   storedCities.push(cityInputText);
   localStorage.setItem("cityInputName", JSON.stringify(storedCities));
-  cities.push(city);
-  renderCityBtns();
+  displayCityWeather(cityInput);
 });
 
 // //Displays stored items after a refresh
