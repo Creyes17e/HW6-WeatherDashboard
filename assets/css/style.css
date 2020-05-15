@@ -79,10 +79,7 @@ main {
   border-width: 1px;
   padding: 1rem 1rem;
 }
-.div.card.display-weather-el {
-  justify-content: left;
-  text-align: left;
-}
+
 /*Style for forecast cards*/
 .card-title {
   font-weight: 600;
