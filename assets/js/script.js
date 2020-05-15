@@ -129,6 +129,9 @@ function displayCityWeather(cityname) {
     $("#5-day-forecast").empty();
     //Storing results
     var weatherResults = response.list;
+    //Title for forecast
+    var displayForecastTitle = $("<h4>").text("5-Day-Forecast");
+    $(".forecast-title").append(displayForecastTitle);
     //For loop to call 5 day forecast on html
     for (var i = 0; i < weatherResults.length; i += 8) {
       var displayCityForecastDiv = $("<div class='card-forecast'>");
