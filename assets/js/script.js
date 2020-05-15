@@ -1,14 +1,20 @@
 //Initial cities on page
 var cities = [];
 var currentDate = new Date().toDateString();
+var APIKey = "16579f7bf39afcac0733e6f89e871775";
 
 //Function to display city current weather
 function displayCityWeather(cityname) {
   var APIKey = "16579f7bf39afcac0733e6f89e871775";
-  var city = $(this).attr("data-name");
+  console.log(this);
   var queryUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
-    city +
+    cityname +
+    "&appid=" +
+    APIKey;
+  var queryUrl3 =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    cityname +
     "&appid=" +
     APIKey;
 
@@ -20,7 +26,7 @@ function displayCityWeather(cityname) {
     //Div to hold city current weather
     var cityDiv = $("#display-city-weather");
     //City Name
-    var cityNameP = $("<h2>").text(response.name + " - " + ` ${currentDate}`);
+    var cityNameP = $("<h3>").text(response.name + " - " + ` ${currentDate}`);
 
     //City Temp in Farenheit
     var tempEl = ((response.main.temp - 273.15) * 1.8 + 32).toFixed(1);
@@ -34,14 +40,17 @@ function displayCityWeather(cityname) {
     var windEl = response.wind.speed;
     var windP = $("<p>").text("Wind Speed: " + windEl + " MPH");
 
-    var newCurrentWeatherDiv = $("<div class='current-weather'>");
-
     //Weather Icons
+
+    //Displays city current weather
+    var newCurrentWeatherDiv = $("<div class='current-weather'>");
+    newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP);
+    cityDiv.html(newCurrentWeatherDiv);
 
     //UV Index call
     var lon = response.coord.lon;
     var lat = response.coord.lat;
-    var queryUrl3 =
+    var queryUrl2 =
       "http://api.openweathermap.org/data/2.5/uvi?appid=" +
       APIKey +
       "&lat=" +
@@ -50,7 +59,7 @@ function displayCityWeather(cityname) {
       lon;
 
     $.ajax({
-      url: queryUrl3,
+      url: queryUrl2,
       method: "GET",
     }).then(function (response) {
       $("#uv-display").empty();
@@ -68,47 +77,35 @@ function displayCityWeather(cityname) {
       } else if (uvResults >= 10.5) {
         uvBtn.css("background-color", "violet");
       }
-
-      //Displays cities current weather
-      newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP, uvBtn);
-      cityDiv.html(newCurrentWeatherDiv);
+      $("#uv-display").html(uvBtn);
     });
   });
-
   //Display 5-day Forecast
-  var APIKey = "16579f7bf39afcac0733e6f89e871775";
-  var city = $(this).attr("data-name");
-
-  var queryUrl2 =
-    "https://api.openweathermap.org/data/2.5/forecast?q=" +
-    city +
-    "&appid=" +
-    APIKey;
-
   $.ajax({
-    url: queryUrl2,
+    url: queryUrl3,
     method: "GET",
   }).then(function (response) {
     $("#5-day-forecast").empty();
+    //Storing results
     var weatherResults = response.list;
+    //For loop to call 5 day forecast on html
     for (var i = 0; i < weatherResults.length; i += 8) {
       var displayCityForecastDiv = $("<div class='card-forecast'>");
-      //Date for 5-day forecast
       var date = weatherResults[i].dt_txt;
       var fixedDate = date.substr(0, 10);
-
       var tempEl2 = ((weatherResults[i].main.temp - 273.15) * 1.8 + 32).toFixed(
         1
       );
       var humidityEl2 = weatherResults[i].main.humidity;
-
-      var displayDate = $("<p class='card-title'>").text(fixedDate);
+      //Displays Weather info
+      var displayDate = $("<h6 class='card-title'>").text(fixedDate);
       var displayTemp = $("<p class='card-text'>").text(
         "Temp: " + tempEl2 + " F"
       );
       var displayHumidity = $("<p class='card-text'>").text(
         "Humidity: " + humidityEl2 + " %"
       );
+      //Creating weather icons
       // var weather = weatherResults[i].weather[0].main;
 
       displayCityForecastDiv.append(displayDate);
@@ -118,39 +115,36 @@ function displayCityWeather(cityname) {
     }
   });
 }
-
-//Function to display city btns
-function renderCityBtns() {
-  $("#city-btns-view").empty();
-
-  for (var i = 0; i < cities.length; i++) {
-    var cityBtn = $("<button class='city-btn'>");
-    cityBtn.attr("data-name", cities[i]);
-    cityBtn.text(cities[i]);
-    $("#city-btns-view").prepend(cityBtn);
-  }
-}
-
+storedWeather();
 //Function for event handler for button click "search"
 $("#add-city-btn").on("click", function (event) {
   event.preventDefault();
-  //storing city name
+  //stores city name
   var cityInput = $("#city-input").val().trim();
 
-  //save user input
-  var storedCities = [];
+  //Saves to local storage
   var cityInputText = $(this).siblings("input").val();
+  var storedCities = [];
   storedCities.push(cityInputText);
   localStorage.setItem("cityInputName", JSON.stringify(storedCities));
+
   displayCityWeather(cityInput);
+  storedWeather();
 });
 
-// //Displays stored items after a refresh
-// function displayStoredWeather() {
-//   var lastSearch = JSON.parse(localStorage.getItem("cityInputName"));
+function storedWeather() {
+  // //Calls city name from user input and displays in div
 
-// }
+  var lastCitySearch = JSON.parse(localStorage.getItem("cityInputName"));
+  var cityListCol = $("<div class='city-list'>");
+  var cityList = $("<button class='city-btn city-item-list'>").text(
+    lastCitySearch
+  );
+  cityListCol.append(cityList);
+  $("#city-list-view").prepend(cityListCol);
+}
 
-$(document).on("click", ".city-btn", displayCityWeather);
-
-renderCityBtns();
+$("#city-list-view").on("click", ".city-btn", function (event) {
+  event.preventDefault();
+  displayCityWeather($(this).text());
+});
