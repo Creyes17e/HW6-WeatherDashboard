@@ -6,7 +6,6 @@
 /*Style for Body*/
 body {
   font-family: "Quicksand", sans-serif;
-  font-size: 16px;
   background-color: lightslategray;
 }
 /*Style for Jumbotron*/
@@ -22,25 +21,67 @@ body {
   -o-background-size: cover;
   background-position: center;
 }
-.city-btn {
-  padding: 0.5rem;
-  display: block;
-  margin: 0.5rem;
-  width: 25%;
-  border-radius: 10px 10px 10px 10px;
+#add-city {
+  padding-top: 0.1rem;
+}
+h1 {
+  font-size: 50px;
+}
+h2 {
+  font-size: 30px;
+  margin: auto;
+  padding-bottom: 1rem;
+}
+#searchColumn {
+  background-color: whitesmoke;
+}
+#city-input {
+  display: inline;
+  margin: auto;
   border-color: lightskyblue;
 }
-#display-city-weather {
+.city-item-list {
+  margin: 0.5rem;
   display: block;
+  border-style: solid;
+  border-width: 1px;
+  align-items: center;
+  text-align: center;
 }
-#display-city-forecast {
-  display: inline-flexbox;
-  vertical-align: text-bottom;
+p {
+  color: black;
+  align-content: flex-start;
 }
-.card-text {
-  display: block;
+div.display-weather-el {
+  background-color: lightblue;
+  justify-content: left;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px 5px 5px 5px;
+  border-width: 1px;
+  padding: 1rem 1rem;
 }
-.card {
-  background-color: transparent;
-  color: wheat;
+
+.card-forecast {
+  background-color: lightblue;
+  color: black;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px 5px 5px 5px;
+  border-width: 1px;
+  width: 8rem;
+  height: 9rem;
+}
+#add-city-b:hover {
+  cursor: pointer;
+  background-color: lightgoldenrodyellow;
+}
+.city-btn {
+  border-radius: 10px 10px 10px 10px;
+  border-color: black;
+  border-width: 1px;
+}
+.city-btn:hover {
+  cursor: pointer;
+  background-color: lightgoldenrodyellow;
 }
