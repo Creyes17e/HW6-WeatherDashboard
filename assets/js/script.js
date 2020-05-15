@@ -36,11 +36,9 @@ function displayCityWeather(cityname) {
 
     var newCurrentWeatherDiv = $("<div class='current-weather'>");
 
-    newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP);
-    cityDiv.html(newCurrentWeatherDiv);
     //Weather Icons
 
-    //Display UV Index
+    //UV Index call
     var lon = response.coord.lon;
     var lat = response.coord.lat;
     var queryUrl3 =
@@ -56,14 +54,24 @@ function displayCityWeather(cityname) {
       method: "GET",
     }).then(function (response) {
       $("#uv-display").empty();
+      //Setting UV Colors
+      var uvResults = response.value.toFixed(1);
+      var uvBtn = $("<button class='uv-btn'>").html("UV Index: " + uvResults);
+      if (uvResults <= 2) {
+        uvBtn.css("background-color", "green");
+      } else if (uvResults <= 5 || uvResults < 3.5) {
+        uvBtn.css("background-color", "yellow");
+      } else if (uvResults <= 3.5 || uvResults < 7.5) {
+        uvBtn.css("background-color", "orange");
+      } else if (uvResults <= 7.5 || uvResults < 10.5) {
+        uvBtn.css("background-color", "red");
+      } else if (uvResults >= 10.5) {
+        uvBtn.css("background-color", "violet");
+      }
 
-      var uvResults = response.value;
-      console.log(response);
-      //UV BUTTON
-      var uvEl = $("<button class='uv-btn bg-danger'>").text(
-        "UV Index: " + uvResults
-      );
-      $("#uv-display").html(uvEl);
+      //Displays cities current weather
+      newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP, uvBtn);
+      cityDiv.html(newCurrentWeatherDiv);
     });
   });
 
@@ -84,7 +92,7 @@ function displayCityWeather(cityname) {
     $("#5-day-forecast").empty();
     var weatherResults = response.list;
     for (var i = 0; i < weatherResults.length; i += 8) {
-      var displayCityForecastDiv = $("<div class='card-forecast float-right'>");
+      var displayCityForecastDiv = $("<div class='card-forecast'>");
       //Date for 5-day forecast
       var date = weatherResults[i].dt_txt;
       var fixedDate = date.substr(0, 10);
