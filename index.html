@@ -27,34 +27,39 @@
     <header class="jumbotron justify-content-center">
       <h1 class="display">Weather Dashboard</h1>
     </header>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 bg-info" id="searchColumn">
-          <form id="add-city">
-            <label for="city-input">Search for a City:</label>
-            <br />
-            <input type="text" id="city-input" />
-            <button
-              id="add-city-btn"
-              type="submit"
-              class="fas fa-search"
-            ></button>
-          </form>
-          <div id="city-btns-view"></div>
-        </div>
-        <div class="col-md-6 bg-primary">
-          <br />
-          <div class="card" id="display-city-weather">
-            <div class="uv-display"></div>
+    <main>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-3" id="searchColumn">
+            <nav>
+              <!--Form to search for city-->
+              <h2>Search for a City:</h2>
+              <form id="add-city">
+                <br />
+                <input type="search" id="city-input" />
+                <button
+                  id="add-city-btn"
+                  type="submit"
+                  class="city-btn fas fa-search"
+                ></button>
+              </form>
+              <div id="city-list-view"></div>
+            </nav>
           </div>
-
-          <br />
-          <h2>5-Day Forecast:</h2>
-          <div class="row" id="5-day-forecast"></div>
-          <br />
+          <!--Div that will display current weather of city-->
+          <div class="col-md-9">
+            <div class="card display-weather-el">
+              <div id="display-city-weather"></div>
+              <div id="uv-display"></div>
+            </div>
+            <br />
+            <!--Div row that will contain the cards of the 5-day forecast-->
+            <h2>5-Day Forecast:</h2>
+            <div class="row" id="5-day-forecast"></div>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
     <!--Javascript/Ajax/Jquery Links-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
