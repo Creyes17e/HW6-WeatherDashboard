@@ -1,4 +1,3 @@
-//Initial cities on page
 var cities = [];
 var currentDate = new Date().toDateString();
 var APIKey = "16579f7bf39afcac0733e6f89e871775";
@@ -6,7 +5,6 @@ var APIKey = "16579f7bf39afcac0733e6f89e871775";
 //Function to display city current weather
 function displayCityWeather(cityname) {
   var APIKey = "16579f7bf39afcac0733e6f89e871775";
-  console.log(this);
   var queryUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityname +
@@ -34,11 +32,13 @@ function displayCityWeather(cityname) {
     //City Wind Speed
     var windEl = response.wind.speed;
     var windP = $("<p>").text("Wind Speed: " + windEl + " MPH");
+    //UV Index
+    var uvIndexP = $("<p>").text("UV Index: ");
 
     //Weather Day Icons
     var currentWeather = response.weather[0].main;
-    console.log(currentWeather);
-    console.log(queryUrl);
+    // console.log(currentWeather);
+    // console.log(queryUrl);
     if (currentWeather === "Clouds") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
@@ -75,7 +75,12 @@ function displayCityWeather(cityname) {
         "http://openweathermap.org/img/wn/09d.png"
       );
     }
-
+    //Displays current  weather icon next to city name
+    cityNameP.append(currentWeatherIcon);
+    //Displays city current weather
+    var newCurrentWeatherDiv = $("<div class='current-weather'>");
+    newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP, uvIndexP);
+    cityDiv.html(newCurrentWeatherDiv);
     //UV Index call
     var lon = response.coord.lon;
     var lat = response.coord.lat;
@@ -92,9 +97,11 @@ function displayCityWeather(cityname) {
       method: "GET",
     }).then(function (response) {
       $("#uv-display").empty();
-      //Setting UV Colors
+      //UV value btn
       var uvResults = response.value.toFixed(1);
-      var uvBtn = $("<button class='uv-btn'>").html("UV Index: " + uvResults);
+      var uvBtn = $("<button class='uv-btn'>").html(uvResults);
+      uvIndexP.append(uvBtn);
+      //Setting UV Colors
       if (uvResults <= 2) {
         uvBtn.css("background-color", "green");
       } else if (uvResults <= 5 || uvResults < 3.5) {
@@ -106,17 +113,6 @@ function displayCityWeather(cityname) {
       } else if (uvResults >= 10.5) {
         uvBtn.css("background-color", "violet");
       }
-      //Displays city current weather
-      var newCurrentWeatherDiv = $("<div class='current-weather'>");
-      newCurrentWeatherDiv.append(
-        cityNameP,
-        currentWeatherIcon,
-        tempP,
-        humidityP,
-        windP,
-        uvBtn
-      );
-      cityDiv.html(newCurrentWeatherDiv);
     });
   });
   //Display 5-day Forecast
@@ -200,7 +196,7 @@ function displayCityWeather(cityname) {
     }
   });
 }
-storedWeather();
+storedCityInfo();
 //Grabs text input from form on click
 $("#add-city-btn").on("click", function (event) {
   event.preventDefault();
@@ -214,12 +210,11 @@ $("#add-city-btn").on("click", function (event) {
   localStorage.setItem("cityInputName", JSON.stringify(storedCities));
 
   displayCityWeather(cityInput);
-  storedWeather(storedCities);
+  storedCityInfo(storedCities);
 });
 
-function storedWeather() {
+function storedCityInfo() {
   // //Calls city name from user input and displays in div
-
   var lastCitySearch = JSON.parse(localStorage.getItem("cityInputName"));
 
   //Creates buttons for each city being inputted by user
