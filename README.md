@@ -4,6 +4,8 @@ Weather Dashboard
 
 ## Live Site
 
+https://creyes17e.github.io/HW6-WeatherDashboard/
+
 ## Description
 
 The weather dashboard will help the user find city current weather and a 5day forecast. The Dashboard displays City Name, Date, Weather Icon, Temperature in Farenheit, Humidity, Wind Speed, & UV Index (with conditions being color coded). After refreshing the page the dashboard will display the button of the last searched city, which you may click and will display weather information.
