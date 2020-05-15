@@ -5,8 +5,8 @@
 }
 /*Style for Body*/
 body {
-  font-family: "Quicksand", sans-serif;
-  background-color: lightslategray;
+  font-family: "Forum", cursive;
+  background-color: whitesmoke;
 }
 /*Style for Jumbotron*/
 .jumbotron {
@@ -21,57 +21,84 @@ body {
   -o-background-size: cover;
   background-position: center;
 }
-#add-city {
-  padding-top: 0.1rem;
-}
+/*Style for text*/
 h1 {
+  font-weight: bolder;
   font-size: 50px;
 }
 h2 {
-  font-size: 30px;
+  font-size: 25px;
   margin: auto;
+  padding-top: 1rem;
+  font-weight: bold;
+}
+h3 {
+  font-weight: bold;
+}
+h4 {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+p {
+  color: black;
+  text-align: left;
+  display: block;
+  font-display: left;
+}
+/*Style for main tag*/
+main {
   padding-bottom: 1rem;
 }
+/*Style for search column*/
+#add-city {
+  padding-top: auto;
+}
 #searchColumn {
-  background-color: whitesmoke;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px 5px 5px 5px;
+  border-color: lightgray;
 }
 #city-input {
-  display: inline;
-  margin: auto;
-  border-color: lightskyblue;
+  border-color: lightblue;
+  padding: auto;
 }
 .city-item-list {
   margin: 0.5rem;
   display: block;
   border-style: solid;
   border-width: 1px;
-  align-items: center;
-  text-align: center;
 }
-p {
-  color: black;
-  align-content: flex-start;
-}
-div.display-weather-el {
-  background-color: lightblue;
-  justify-content: left;
+/*Style for current weather display*/
+.div.display-weather-el {
+  background-color: white;
   border-style: solid;
-  border-color: black;
+  border-color: lightgray;
   border-radius: 5px 5px 5px 5px;
   border-width: 1px;
   padding: 1rem 1rem;
 }
-
+.div.card.display-weather-el {
+  justify-content: left;
+  text-align: left;
+}
+/*Style for forecast cards*/
+.card-title {
+  font-weight: 600;
+}
 .card-forecast {
   background-color: lightblue;
   color: black;
   border-style: solid;
-  border-color: black;
+  border-color: lightgray;
   border-radius: 5px 5px 5px 5px;
   border-width: 1px;
   width: 8rem;
   height: 9rem;
+  padding: auto;
 }
+/*Style for btns and input*/
 #add-city-b:hover {
   cursor: pointer;
   background-color: lightgoldenrodyellow;
@@ -80,6 +107,17 @@ div.display-weather-el {
   border-radius: 10px 10px 10px 10px;
   border-color: black;
   border-width: 1px;
+  width: 150px;
+  background-color: lightblue;
+  font-weight: 600;
+}
+#add-city-btn {
+  width: auto;
+  border-radius: 0%;
+}
+#add-city {
+  justify-content: center;
+  padding: 0.2rem;
 }
 .city-btn:hover {
   cursor: pointer;
