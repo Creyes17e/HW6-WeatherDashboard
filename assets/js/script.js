@@ -37,11 +37,6 @@ function displayCityWeather(cityname) {
 
     //Weather Icons
 
-    //Displays city current weather
-    var newCurrentWeatherDiv = $("<div class='current-weather'>");
-    newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP);
-    cityDiv.html(newCurrentWeatherDiv);
-
     //UV Index call
     var lon = response.coord.lon;
     var lat = response.coord.lat;
@@ -72,7 +67,10 @@ function displayCityWeather(cityname) {
       } else if (uvResults >= 10.5) {
         uvBtn.css("background-color", "violet");
       }
-      $("#uv-display").html(uvBtn);
+      //Displays city current weather
+      var newCurrentWeatherDiv = $("<div class='current-weather'>");
+      newCurrentWeatherDiv.append(cityNameP, tempP, humidityP, windP, uvBtn);
+      cityDiv.html(newCurrentWeatherDiv);
     });
   });
   //Display 5-day Forecast
