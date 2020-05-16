@@ -215,7 +215,6 @@ $("#add-city-btn").on("click", function (event) {
   event.preventDefault();
   //stores city name
   var cityInput = $("#city-input").val().trim();
-
   //Saves to local storage
   var cityInputText = $(this).siblings("input").val();
   var storedCities = [];
@@ -230,6 +229,9 @@ function storedCityInfo() {
   // //Calls city name from user input and displays in div
   var lastCitySearch = JSON.parse(localStorage.getItem("cityInputName"));
 
+  if (lastCitySearch != null) {
+    displayCityWeather(lastCitySearch);
+  }
   //Creates buttons for each city being inputted by user
   var cityListCol = $("<div class='city-list'>");
   var cityList = $("<button class='city-btn city-item-list'>").text(
