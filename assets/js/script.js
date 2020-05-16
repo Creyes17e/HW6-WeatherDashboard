@@ -4,6 +4,9 @@ var APIKey = "16579f7bf39afcac0733e6f89e871775";
 
 //Function to display city current weather
 function displayCityWeather(cityname) {
+  $(".display-weather-el").css("background-color", "white");
+  $(".display-weather-el").css("border-color", "lightgrey");
+  $(".display-weather-el").css("border-style", "solid");
   var APIKey = "16579f7bf39afcac0733e6f89e871775";
   var queryUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
