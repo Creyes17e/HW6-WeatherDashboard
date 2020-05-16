@@ -136,5 +136,10 @@ main {
   }
   #searchColumn {
     width: fit-content;
+    margin-bottom: 1rem;
+  }
+  .jumbotron {
+    margin: 0 auto;
+    margin-bottom: 1rem;
   }
 }
