@@ -44,17 +44,17 @@ function displayCityWeather(cityname) {
     if (currentWeather === "Clouds") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
-        "http://openweathermap.org/img/wn/03d.png"
+        "https://openweathermap.org/img/wn/03d.png"
       );
     } else if (currentWeather === "Thunderstorm") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
-        "http://openweathermap.org/img/wn/11d.png"
+        "https://openweathermap.org/img/wn/11d.png"
       );
     } else if (currentWeather === "Rain") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
-        "http://openweathermap.org/img/wn/10d.png"
+        "https://openweathermap.org/img/wn/10d.png"
       );
     } else if (currentWeather === "Snow") {
       var currentWeatherIcon = $("<img>").attr(
@@ -64,17 +64,17 @@ function displayCityWeather(cityname) {
     } else if (currentWeather === "Mist") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
-        "http://openweathermap.org/img/wn/50d.png"
+        "https://openweathermap.org/img/wn/50d.png"
       );
     } else if (currentWeather === "Clear") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
-        "http://openweathermap.org/img/wn/01d.png"
+        "https://openweathermap.org/img/wn/01d.png"
       );
     } else if (currentWeather === "Drizzle") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
-        "http://openweathermap.org/img/wn/09d.png"
+        "https://openweathermap.org/img/wn/09d.png"
       );
     }
     //Displays current  weather icon next to city name
@@ -87,6 +87,7 @@ function displayCityWeather(cityname) {
 
     //UV Index call
     var lon = response.coord.lon;
+    console.log(lon);
     var lat = response.coord.lat;
     var queryUrl2 =
       "https://api.openweathermap.org/data/2.5/uvi?appid=" +
@@ -95,7 +96,7 @@ function displayCityWeather(cityname) {
       lat +
       "&lon=" +
       lon;
-
+    console.log(queryUrl2);
     $.ajax({
       url: queryUrl2,
       method: "GET",
