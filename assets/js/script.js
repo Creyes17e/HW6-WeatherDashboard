@@ -87,7 +87,6 @@ function displayCityWeather(cityname) {
 
     //UV Index call
     var lon = response.coord.lon;
-    console.log(lon);
     var lat = response.coord.lat;
     var queryUrl2 =
       "https://api.openweathermap.org/data/2.5/uvi?appid=" +
@@ -96,7 +95,7 @@ function displayCityWeather(cityname) {
       lat +
       "&lon=" +
       lon;
-    console.log(queryUrl2);
+
     $.ajax({
       url: queryUrl2,
       method: "GET",
@@ -210,6 +209,7 @@ function displayCityWeather(cityname) {
   });
 }
 storedCityInfo();
+
 //Grabs text input from form on click
 $("#add-city-btn").on("click", function (event) {
   event.preventDefault();
@@ -238,6 +238,7 @@ function storedCityInfo() {
   cityListCol.append(cityList);
   $("#city-list-view").prepend(cityListCol);
 }
+
 //Displays weather info on click
 $("#city-list-view").on("click", ".city-btn", function (event) {
   event.preventDefault();
