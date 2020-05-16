@@ -89,7 +89,7 @@ function displayCityWeather(cityname) {
     var lon = response.coord.lon;
     var lat = response.coord.lat;
     var queryUrl2 =
-      "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+      "https://api.openweathermap.org/data/2.5/uvi?appid=" +
       APIKey +
       "&lat=" +
       lat +
@@ -105,6 +105,7 @@ function displayCityWeather(cityname) {
       var uvResults = response.value.toFixed(1);
       var uvBtn = $("<button class='uv-btn'>").html(uvResults);
       uvIndexP.append(uvBtn);
+
       //Setting UV Colors
       if (uvResults <= 2) {
         uvBtn.css("background-color", "green");
