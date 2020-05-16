@@ -59,6 +59,7 @@ main {
   border-width: 1px;
   border-radius: 5px 5px 5px 5px;
   border-color: lightgray;
+  display: inline;
 }
 #city-input {
   border-color: lightblue;
@@ -72,14 +73,18 @@ main {
 }
 /*Style for current weather display*/
 .div.display-weather-el {
-  background-color: white;
+  background-color: transparent;
   border-style: solid;
-  border-color: lightgray;
+  border-color: transparent;
   border-radius: 5px 5px 5px 5px;
   border-width: 1px;
   padding: 1rem 1rem;
 }
 
+.card {
+  background-color: transparent;
+  border-style: none;
+}
 /*Style for forecast cards*/
 
 .card-title {
