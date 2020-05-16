@@ -59,7 +59,7 @@ function displayCityWeather(cityname) {
     } else if (currentWeather === "Snow") {
       var currentWeatherIcon = $("<img>").attr(
         "src",
-        "http://openweathermap.org/img/wn/13d.png"
+        "https://openweathermap.org/img/wn/13d.png"
       );
     } else if (currentWeather === "Mist") {
       var currentWeatherIcon = $("<img>").attr(
@@ -164,37 +164,37 @@ function displayCityWeather(cityname) {
       if (weather === "Clouds") {
         var weatherIcon = $("<img>").attr(
           "src",
-          "http://openweathermap.org/img/wn/03d.png"
+          "https://openweathermap.org/img/wn/03d.png"
         );
       } else if (weather === "Thunderstorm") {
         var weatherIcon = $("<img>").attr(
           "src",
-          "http://openweathermap.org/img/wn/11d.png"
+          "https://openweathermap.org/img/wn/11d.png"
         );
       } else if (weather === "Rain") {
         var weatherIcon = $("<img>").attr(
           "src",
-          "http://openweathermap.org/img/wn/10d.png"
+          "https://openweathermap.org/img/wn/10d.png"
         );
       } else if (weather === "Snow") {
         var weatherIcon = $("<img>").attr(
           "src",
-          "http://openweathermap.org/img/wn/13d.png"
+          "https://openweathermap.org/img/wn/13d.png"
         );
       } else if (weather === "Mist") {
         var weatherIcon = $("<img>").attr(
           "src",
-          "http://openweathermap.org/img/wn/50d.png"
+          "https://openweathermap.org/img/wn/50d.png"
         );
       } else if (weather === "Clear") {
         var weatherIcon = $("<img>").attr(
           "src",
-          "http://openweathermap.org/img/wn/01d.png"
+          "https://openweathermap.org/img/wn/01d.png"
         );
       } else if (weather === "Drizzle") {
         var weatherIcon = $("<img>").attr(
           "src",
-          "http://openweathermap.org/img/wn/09d.png"
+          "https://openweathermap.org/img/wn/09d.png"
         );
       }
       displayCityForecastDiv.append(
