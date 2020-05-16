@@ -17,3 +17,5 @@ Created a repo in github with a README.md. Through gitbash I cloned the repo I p
 ## Credits
 
 StackOverFlow, W3Schools, Bootstrap, Class Activites Unit 5 & 6, Bootcamp Intructor and TAs, Google Fu, FontAwesome, MDN, OpenWetherAPI Documentation,
+## To-Dos
+Display last searched weather info after refresh, uv index btn display
