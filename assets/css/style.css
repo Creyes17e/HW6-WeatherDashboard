@@ -99,7 +99,7 @@ main {
   border-width: 1px;
   width: 8rem;
   height: 9rem;
-  padding: auto;
+  padding: 0 auto;
 }
 /*Style for btns and input*/
 #add-city-b:hover {
@@ -125,4 +125,16 @@ main {
 .city-btn:hover {
   cursor: pointer;
   background-color: lightgoldenrodyellow;
+}
+
+@media all and (max-width: 950px) and (min-width: 300px) {
+  h1 {
+    font-size: 40px;
+  }
+  #city-input {
+    width: fit-content;
+  }
+  #searchColumn {
+    width: fit-content;
+  }
 }
